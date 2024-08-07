@@ -1,2 +1,8 @@
 import streamlit as st
-st.write("Hello World!")
+
+
+pg = st.navigation([st.Page("fileupload.py")])
+                    
+pg.run()
+
+
