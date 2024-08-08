@@ -1,0 +1,146 @@
+body {
+    /*background: #353535; */
+    line-height: 1.2rem;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+* {
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+header {
+    background: transparent!important;
+}
+header div[data-testid="stDecoration"] {
+    display: none; 
+}
+section[data-testid="stSidebar"] {
+    top: 0;
+}
+
+figcaption {
+    display: none;
+}
+
+header #MainMenu svg {
+    fill: #FFF; 
+    margin: 0 0 2rem;
+}
+
+.appview-container > section:not(.main) { /** Sidebar **/
+    background: #0C1228; 
+}
+.appview-container>section:not(.main) p,
+.appview-container>section:not(.main) div {
+    color: #FFF !important;
+}
+.appview-container>section:not(.main) .stSelectbox > div > div * {
+    color: #222B54 !important;
+}
+
+figure {
+    margin: 0;
+}
+
+section.main {
+
+}
+
+div.block-container {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+div.block-container > div > div div.element-container:not(:first-child),
+div.block-container > div > div div[data-testid="stExpander"]{
+    max-width: 736px;
+    margin: 1rem auto 0;
+    width: 100%; 
+}
+
+.stMarkdown, .stExpander, .row-widget, .stTextArea {
+    width: initial !important; 
+}
+.stMarkdown *, .stExpander *{
+    width: initial !important;
+}
+
+.header {
+    background: rgb(16, 125, 230);
+    background: linear-gradient(45deg, rgba(16, 125, 230, 1) 20%, rgba(36, 176, 219, 1) 100%);
+    text-align: center;
+    padding: 4rem 0 1rem;
+    margin: 0 0 1rem;
+    color: #FFF; 
+    width: 500 px;
+}
+
+
+
+.header h1,
+.header h1 span,
+.header h3,
+.header h3 span {
+    color: #FFF; 
+}
+
+.header h3 span {
+    max-width: 600px;
+    margin: auto;
+}
+
+footer {
+    visibility: hidden;
+}
+
+.stButton button {
+    background-color: #007BFF; /* Default background color */
+    color: #FFF; /* Text color */
+    border: none; /* Remove border */
+    padding: 0.5rem 1rem; /* Padding */
+    border-radius: 0.25rem; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.stButton button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+
+.stButton button:focus {
+    outline: none; /* Remove default outline */
+}
+
+
+/* Assuming search-box-202 is a div or similar element */
+.gdg-seveqep{
+    position: relative; /* Ensures that positioning is relative to its normal position */
+    width: 100%; /* Ensures it takes up the full width of its container */
+    margin: 0 auto; /* Centers the element horizontally */
+    padding: 5px; /* Adds padding inside the element */
+    box-sizing: border-box; /* Includes padding and border in the element's width and height */
+    overflow: hidden; /* Hides any overflow content */
+}
+
+/* If the issue is with alignment or positioning */
+.gdg-seveqep{
+    display: flex; /* Or 'inline-flex' if you want it to be inline */
+    justify-content: center; /* Centers content horizontally within the box */
+    align-items: center; /* Centers content vertically within the box */
+}
+
+.gdg-seveqep input {
+    overflow-x: auto; /* Allows horizontal scrolling if the content overflows */
+}
+
+.gdg-seveqep input {
+    width: 100% ;/* Adjust based on padding and border */
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: left;
+}
