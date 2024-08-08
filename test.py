@@ -2,23 +2,48 @@ import streamlit as st
 import utils as utl
 import pandas as pd
 import chatPrompt
-
+import snowflake.connector
 
 st.set_page_config(
 	layout="wide",
 	page_title='Oapy by Impression',
 	initial_sidebar_state="expanded"
 )
+
+# def load_data():
+#     conn = st.connection(st.secrets["connections.snowflake"])
+#     df = conn.query("SELECT * from WORKAREA_DB_PRD1.WORKAREA_PCL_H_OPS.SUITE_DASHBOARD_DATA_DUMP limit 20000;", ttl=0)
+#     df = pd.DataFrame(df)
+#     df['SAILINGDATE'] = pd.to_datetime(df['SAILINGDATE'])
+#     df['SAILINGENDDATE'] = pd.to_datetime(df['SAILINGENDDATE'])
+#     return df
+
+
+
+
+snowflake_params = st.secrets["connections.snowflake"]
+
+
+conn = snowflake.connector.connect(
+    user=snowflake_params["user"],
+    password=snowflake_params["password"],
+    account=snowflake_params["account"],
+    warehouse=snowflake_params["warehouse"],
+    database=snowflake_params["database"],
+    schema=snowflake_params["schema"]
+)
+
 @st.cache_data
 def load_data():
-    conn = st.connection(st.secrets["connections.snowflake"])
-    df = conn.query("SELECT * from WORKAREA_DB_PRD1.WORKAREA_PCL_H_OPS.SUITE_DASHBOARD_DATA_DUMP limit 20000;", ttl=0)
-    df = pd.DataFrame(df)
-    df['SAILINGDATE'] = pd.to_datetime(df['SAILINGDATE'])
-    df['SAILINGENDDATE'] = pd.to_datetime(df['SAILINGENDDATE'])
-    return df
+    with conn.cursor() as cur:
+        cur.execute("SELECT * from WORKAREA_DB_PRD1.WORKAREA_PCL_H_OPS.SUITE_DASHBOARD_DATA_DUMP limit 20000;")
+        return cur.fetchall()
+
 
 df=load_data()
+df = pd.DataFrame(df)
+df['SAILINGDATE'] = pd.to_datetime(df['SAILINGDATE'])
+df['SAILINGENDDATE'] = pd.to_datetime(df['SAILINGENDDATE'])
 
 with st.container():
     st.markdown(f'<div class="header"><h1>Welcome to Cruises!</h1><h3>Chat web app that generates adhoc cruise data based on a given prompt.</h3></div>', unsafe_allow_html=True)
