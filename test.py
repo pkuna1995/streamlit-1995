@@ -11,7 +11,7 @@ st.set_page_config(
 )
 @st.cache_data
 def load_data():
-    conn = st.connection('snowflake')
+    conn = st.connection(st.secrets["connections.snowflake"])
     df = conn.query("SELECT * from WORKAREA_DB_PRD1.WORKAREA_PCL_H_OPS.SUITE_DASHBOARD_DATA_DUMP limit 20000;", ttl=0)
     df = pd.DataFrame(df)
     df['SAILINGDATE'] = pd.to_datetime(df['SAILINGDATE'])
